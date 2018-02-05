@@ -111,7 +111,7 @@ int delaft(int y)
     while(p->info!=y)
     { p=p->next;  }
     q=p->next;
-    q=q->info;
+    x=q->info;
     p->next=q->next;
     freenode(q);
     return x;
