@@ -2,30 +2,48 @@
 #include<malloc.h>
 typedef struct node * NODEPTR;
 struct node
-{int info;
- NODEPTR next;};
+{
+ int info;
+ NODEPTR next;
+};
 NODEPTR list=NULL;
+
 NODEPTR getnode()
-{NODEPTR p;
+{
+ NODEPTR p;
     p=(NODEPTR)malloc(sizeof(struct node));
-    return p;}
+    return p;
+}
+
 void freenode(NODEPTR p)
-{free(p);}
+{
+ free(p);
+}
+
 void insbeg(int x)
-{NODEPTR p;
+{
+ NODEPTR p;
     p=getnode();
     p->info=x;
     p->next=list;
-    list=p;}
+    list=p;
+}
+
 void traverse()
-{ NODEPTR p;
+{
+ NODEPTR p;
     p=list;
     while(p!=NULL)
-    { printf("%d-> ",p->info);
-        p=p->next; }
-    printf("\n");}
+    { 
+     printf("%d-> ",p->info);
+        p=p->next;
+    }
+    printf("\n");
+}
+
 void insend(int x)
-{NODEPTR p,q;
+{
+ NODEPTR p,q;
     q=getnode();
     p=getnode();
     q->next=NULL;
@@ -38,40 +56,55 @@ void insend(int x)
     {
         p=list;
     while(p->next!=NULL)
-    { p=p->next; }
+    { 
+     p=p->next;
+    }
     p->next=q;
     }
     }
+
 int delbeg()
-{ int x;
+{ 
+ int x;
     NODEPTR p;
     p=list;
     x=p->info;
     list=p->next;
     freenode(p);
-    return x;}
+    return x;
+}
+
 int delend()
-{int x;
+{
+ int x;
     NODEPTR p,q;
     p=list;
     x=p->info;
     while(p->next!=NULL)
-    { q=p;
-        p=p->next; }
+    { 
+     q=p;
+        p=p->next; 
+    }
     q->next=NULL;
     freenode(p);
-    return x;}
+    return x;
+}
+
 void insaft(int x,int y)
-{NODEPTR p,q;
+{
+ NODEPTR p,q;
     p=list;
     q=getnode();
     while(p->info!=y)
     { p=p->next;}
     q->next=p->next;
     p->next=q;
-    q->info=x;}
+    q->info=x;
+}
+
 int delaft(int y)
-{int x;
+{
+ int x;
     NODEPTR p,q;
     p=list;
     q=getnode();
@@ -81,9 +114,12 @@ int delaft(int y)
     q=q->info;
     p->next=q->next;
     freenode(q);
-    return x;}
+    return x;
+}
+
 main()
-{int ch,x,y,d;
+{
+ int ch,x,y,d;
     while(1)
     {printf("Enter choice:\n1. INSERT BEGINNING\n2. INSERT END\n3. INSERT AFTER\n4. DELETE BEGINNING\n5. DELETE END\n6. DELETE AFTER\n7. TRAVERSE\n8. QUIT\n");
  scanf("%d",&ch);
